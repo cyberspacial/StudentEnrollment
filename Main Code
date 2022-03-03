@@ -1,0 +1,22 @@
+package studentdatabase;
+import java.util.Scanner;
+
+public class StudentDatabase {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Amount of Applicants: ");
+		Scanner in = new Scanner (System.in);
+		int stuNumber = in.nextInt();
+		Students [] students = new Students [stuNumber];
+		
+		for (int n = 0; n < stuNumber;n++) {
+		students[n]= new Students();
+		students[n].enroll();
+		students[n].payTuition(); 
+		System.out.println(students[n].toString());
+		}
+
+	}
+
+}
