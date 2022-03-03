@@ -1,0 +1,82 @@
+package studentdatabase;
+import java.util.Scanner;
+
+public class Students {
+	
+	public String firstName;
+	public String lastName;
+	public int yearGrade;
+	public String studentID;
+	public int tuitionBalance;
+	public String courses = "";
+	public static int coursePrice = 300;
+	public static int id = 1000;
+
+	//get students name and year  
+	public Students () {
+		Scanner in = new Scanner(System.in);
+		System.out.print("First Name: ");
+		this.firstName = in.nextLine();
+		System.out.print("Last Name: ");
+		this.lastName = in.nextLine();
+		System.out.println("1 - Freshman\n2 - Sophomore\n3 - Junior\n4 - Senior\nSelect Year ");
+		this.yearGrade = in.nextInt();
+		
+		setStudentID();
+		
+	} 
+	
+	//generate id
+	private void setStudentID() {
+		id++;
+		this.studentID = yearGrade + "" +id; 
+	}
+
+	
+	//enroll in courses and accumulate tuition  
+	public void enroll () {
+		do {
+			
+		System.out.print("Enter Course (x to complete): ");
+		Scanner in = new Scanner (System.in);
+		String course = in.nextLine();
+		if (!course.equals("x")) {
+			courses = courses + "\n -" + course;
+			tuitionBalance = tuitionBalance + coursePrice;
+		} else { 
+		    break;
+		}
+		}while (1 != 0);
+			
+			System.out.println("Classes:" + courses);
+			System.out.println ("Total Price $" + tuitionBalance);
+	}
+	
+	//calculate current balance
+	public void viewBalance () {
+		System.out.println("Current Balance: $" +tuitionBalance);
+	}
+	
+	//construct tuition payment system 
+	public void payTuition () {
+		viewBalance ();
+		System.out.print("Submit Payment: $");
+		Scanner in = new Scanner (System.in);
+		int payment = in.nextInt();
+		tuitionBalance = tuitionBalance - payment;
+		System.out.println("Thank you for your submission!");
+		System.out.println("You have $" +tuitionBalance + " remaining.");
+	}
+	
+	
+	//display profile 
+	public String toString() {
+		return "\nWelcome, " +firstName +" " +lastName + 
+				"\nYear " +yearGrade +
+				"\nAttending: " +courses +
+				"\nBalance: $" +tuitionBalance +
+				"\nStudent ID: " +studentID +"\n";
+	}
+		
+}
+
